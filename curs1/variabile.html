@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Variabile</title>
+</head>
+<body>
+  <h1>Atentie!!!</h1>
+    <p>In exemple mai vechi de JavaScript declararea variabilelor se face cu var. 
+        Aceasta este varianta veche pentru declararea unei variabile, si nu este recomandata. 
+        Sunt cateva diferente subtile intre let si var</p>
+    <p>Vedeti in consola !</p>
+    <script>
+        var primaVariabila = 20;
+        var primaVariabila = 40; //redeclareare este permisa dar nu este recomandata
+        //primaVariabila = 60; // reasignarea erte ok , schimba valoarea variabilei
+        console.log(primaVariabila);
+        let primulNumar = 10;
+        let primulNumar = 17;// redeclararea cu let genereaza eroare
+        primulNumar = 27;// reasignarea erte ok , schimba valoarea variabilei
+        console.log(primulNumar);
+    </script>
+</body>
+</html>
