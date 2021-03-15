@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+
+<head>
+	<title>Instructiunea while </title>
+	<meta charset="utf-8">
+</head>
+
+<body>
+	<h3>Sa se afiseze numerele impare pana la un numar n citit de la tastatura.</h3>
+	<hr />
+	<script type="text/javascript">
+		let x = 1;        // inițializarea variabilei x
+		n = eval(prompt("Dati numarul:<br />"));
+		while (x <= n) {        // verificare condiție
+			document.write("<br /> x este " + x);
+			x += 2;        // incrementarea variabilei x
+		}
+	</script>
+
+<h3>Scrie un program care cere un număr de la tastatura 
+	si afisează descrescator  toate numerele pare mai mari decât 0
+	 si mai mici decat acel număr.</h3>
+	<h3>Scrieți un program care să afișeze toate
+		caracterele pentru codurile ASCII de la 0 la
+		255.</h3>
+
+	<script>
+		for (let code = 0; code < 255; code++) {
+			document.write(code + " " + String.fromCharCode(code));
+			document.write("<br>");
+		}
+	</script>
+	<h3>Ce afiseaza urmatorul cod?</h3>
+	<code><pre>
+		let i = 1;
+		while (i !== 10) {
+			console.log(i);
+			i = i + 2;
+		}
+	</pre></code>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p id="demo"></p>
+<p id="demo2"></p>
+<p id="demo3"></p>
+<!-- https://attacomsian.com/blog/javascript-iterate-objects-->
+<!-- https://medium.com/@darrion/ways-to-loop-through-an-object-in-javascript-622353049c7f -->
+<script>
+    var cars;
+    cars= {
+        masina1:"BMW",
+        masina2:"Volvo",
+        masina3:"Saab",
+        masina4:"Ford",
+        masina5:"DACIA"
+    }
+
+
+    // Metoda 1 cu for  in
+var i = 0;
+var text = "";
+var text2 = "";
+for( var c in cars){
+    text += cars[c] + "<br>"; 
+}
+
+// Metoda 2 cu while
+var keys =Object.keys(cars);
+var l = Object.keys(cars).length;
+var cheie;
+while (l>0){
+    cheie=keys[l-1];
+    console.log(cheie);
+    text2  += cars[cheie] + "<br>"; 
+    l=l-1;
+}
+
+
+
+// Metoda 3 cu for of
+var text3 = "";
+for (let [key, value] of Object.entries(cars)) {
+    text3 += key + ": "+ value+ "<br>";
+  console.log(text3);
+}
+document.getElementById("demo").innerHTML = text;
+document.getElementById("demo2").innerHTML = text2;
+document.getElementById("demo3").innerHTML = text3;
+</script>
+
+</body>
+</html>
