@@ -9,35 +9,54 @@
 
 <body>
     <p>
-        Dacă cuvântul cheie <b>var</b>  sau <b> let</b> este utilizat la definirea variabilei  
-        în cadrul unei funcții sau al unui alt domeniu non-global, 
-        atunci acea variabilă nu este globală.  <br>
-        Dacă cuvântul cheie <b>var</b>  sau <b> let</b> nu este utilizat la definirea variabilei 
-        înainte de un nume de variabilă, 
+        Dacă cuvântul cheie <b>var</b> sau <b> let</b> este utilizat la definirea variabilei
+        în cadrul unei funcții sau al unui alt domeniu non-global,
+        atunci acea variabilă nu este globală. <br>
+        Dacă cuvântul cheie <b>var</b> sau <b> let</b> nu este utilizat la definirea variabilei
+        înainte de un nume de variabilă,
         atunci acea variabilă este globală. <br>
-        <b>var</b>  sau <b> let</b>  este obligatoriu dacă nu se inițializează variabila <br>
-        Se recomanda declararea variabilelor cu <b>let</b> 
+        <b>var</b> sau <b> let</b> este obligatoriu dacă nu se inițializează variabila <br>
+        Se recomanda declararea variabilelor cu <b>let</b>
         <a href="https://www.w3schools.com/js/js_let.asp">https://www.w3schools.com/js/js_let.asp</a>
     </p>
     <script>
-       
 
+        // ex 1
+        // var sum;
+        // function foo() {
+        //     var x;
+        //     var y;
 
+        //     x = 5;
+        //     x ='aaa';
+        //     y = 6;
+        //     sum = x + y;
+        //     return sum;
+        // }
 
-        var sum;
-        function foo() {
-            var x;
-            var y;
+        // sum = foo();
+        // console.log('Suma easte:', sum);
 
-            x = 5;
-            x ='aaa';
-            y = 6;
-            sum = x + y;
-            return sum;
+        //ex2
+        // function salut() {
+        //     console.log(name);
+        //     console.log(age);
+        //     var name = "Lydia";
+        //     let age = 21;
+        // }
+
+        // salut();
+
+        //ex3 
+        for (var i = 0; i < 3; i++) {
+            //console.log(i);
         }
+        console.log(i);
 
-        sum = foo();
-        console.log('Suma easte:', sum);
+        for (let j = 0; j < 3; j++) {
+            //console.log(j);
+        }
+        console.log(j);
     </script>
 </body>
 
