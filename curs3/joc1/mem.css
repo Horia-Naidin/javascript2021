@@ -1,0 +1,21 @@
+li {
+    display: inline-block;
+    margin: 10px;
+    background: url(https://www.toptal.com/designers/subtlepatterns/patterns/wild_oliva.png);
+    border-radius: 10px;
+    width: 130px;
+    height: 130px;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    visibility: hidden;
+}
+#start{
+    padding: 15px;
+    background-color: red;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 14px;
+}
