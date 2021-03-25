@@ -22,13 +22,11 @@ for (i = 0; i < 12; i++) {
 }
 shuffle();
 
-function shuffle(){
-  Array.prototype.randomize = function()
-  {
+function shuffle() {
+  Array.prototype.randomize = function () {
     var i = this.length, j, temp;
-    while (--i)
-    {
-      j = Math.floor( Math.random() * (i - 1) );
+    while (--i) {
+      j = Math.floor(Math.random() * (i - 1));
       temp = this[i];
       this[i] = this[j];
       this[j] = temp;
@@ -37,10 +35,10 @@ function shuffle(){
 
   images.randomize();
 }
-function restart(steps){
-    document.getElementById("grid").style.display = 'none';
-    var success ="<h1> Felicitari ai terminat jocul in "+ steps+ " de pasi!";
-    document.getElementById("success").innerHTML = success;
+function restart(steps) {
+  document.getElementById("grid").style.display = 'none';
+  var success = "<h1> Felicitari ai terminat jocul in " + steps + " de pasi!";
+  document.getElementById("success").innerHTML = success;
 }
 
 
@@ -48,7 +46,7 @@ function restart(steps){
 var output = "<ul>";
 for (var i = 0; i < 24; i++) {
   output += "<li>";
-  output += "<img src = '" + images[i] + "' width='96' height='96''/>";
+  output += "<img src = '" + images[i] + "' width='96' height='96' style='visibility:hidden'/>";
   output += "</li>";
 }
 output += "</ul>";
@@ -59,20 +57,24 @@ var first = null;
 var second = null;
 var selected = 0;
 var correct = 0;
-var steps =0;
+var steps = 0;
 var countclick = 0;
 
 items = document.querySelectorAll('li');
 
-items.forEach(item => item.addEventListener('click', function(event) {
-    if(countclick %2 ==0){
-        steps +=1; 
-    }
+items.forEach(item => item.addEventListener('click', function (event) {
+  if (countclick % 2 == 0) {
+    steps += 1;
+  }
   if (selected === 2) return;
 
-    // increment guess count, show image, mark it as face up
-    selected++;
+  // increment guess count, show image, mark it as face up
+  selected++;
+  let x = event.target.querySelector('img');
+  if (x != null) {
     event.target.querySelector('img').style.visibility = 'visible';
+
+
 
     //First turn
     if (selected === 1) {
@@ -87,12 +89,19 @@ items.forEach(item => item.addEventListener('click', function(event) {
           restart(steps);
         }
       } else {
-          setTimeout(function () {
-            first.querySelector('img').style.visibility = 'hidden';
-            second.querySelector('img').style.visibility = 'hidden';
-            selected = 0;
-          }, 1000);
-        }
+        setTimeout(function () {
+          first.querySelector('img').style.visibility = 'hidden';
+          second.querySelector('img').style.visibility = 'hidden';
+          selected = 0;
+        }, 1000);
+      }
     }
-    ++countclick 
+    ++countclick
+  }
+  else {
+    // click same img
+    first.querySelector('img').style.visibility = 'hidden';
+    selected = 0;
+    ++countclick
+  }
 }));
