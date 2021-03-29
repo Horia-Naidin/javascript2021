@@ -1,0 +1,109 @@
+
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Validare jQuery</title>
+		<style type="text/css">
+			.error { border:2px solid red; }
+        </style>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script type="text/javascript">
+		$(document).ready(function() {
+		  // detecteaza cand se trimite un formular, preia datele din campuri si le verifica
+		  $('form').submit(function() {
+			// preia valorile din fiecare element
+			var name = $(this).find('input[name="nume"]');          // Nume
+			var email = $(this).find('input[name="email"]');        // E-mail
+			var gen = $(this).find(':radio:checked');                         // Gen
+			var age = $(this).find('select[name="age"]');           // Varsta
+			var msg = $(this).find('#msg');                                   // Mesaj
+
+			// sterge clasa "error" din toate elementele
+			// seteaza o variabila "error" folosita ca sa determine daca formularul va fi sau nu trimis
+			$('*').removeClass('error');
+			var error = 0;
+			var regx = /^([a-z0-9_\-\.])+\@([a-z0-9_\-\.])+\.([a-z]{2,4})$/i;   // regexp pt. e-mail
+
+				  /* Verificare campuri (adauga clasa "error" la cele nevalide si seteaza error=1) */
+			// verifica "name"
+			if(name.val().length<2){
+			  name.addClass('error');
+			  error = 1;
+			}
+			// verifica "email"
+			if(!regx.test(email.val())){
+			  email.addClass('error');
+			  error = 1;
+			}
+			// verifica radio input "gen", daca se returneaza 'undefined', nu e bifat,
+			// adauga clasa "error" la elementul care include butoanele radio
+			if(gen.val()==undefined){
+			  $('#gen').addClass('error');
+			  error = 1;
+			}
+			// verifica lista Select "age", daca valoarea e cea afisata initial, din primul <option>
+			if(age.val()==age.find('option:first').val()){
+			  age.addClass('error');
+			  error = 1;
+			}
+			// verifica "msg"
+			if(msg.val().length<5){
+			  msg.addClass('error');
+			  error = 1;
+			}
+
+			// daca variabila error e 0, trimite formularul
+			// altfel afiseaza un mesaj intr-o fereastra Alert, si blocheaza trimiterea formularului, prin return false
+			if(error==0) {
+			  $(tihs).submit();
+			}
+			else {
+			  alert('Completati toate campurile care au bordura rosie');
+			  return false;      // opreste trimiterea formularului
+			}
+		  });
+		});
+		</script>
+	</head>
+	<body>
+        <div class="container">
+            <h2>Formular</h2>
+		<form action="test.php" method="post">
+            <div class="form-group">
+                <label for="nume">Nume:</label>
+                <input type="text" name="nume" id="nume" />
+            </div>
+            <div class="form-group">
+                <label for="email">E-mail:</label>
+                <input type="text" name="email" id="email" />
+            </div>
+            <div class="form-group" id="gen">
+                <label for="gen">Gen:</label> <br>
+                <input type="radio" name="gen" value="barbat" /> Barbat <br>
+                <input type="radio" name="gen" value="femeie" /> Femeie
+       
+            </div>
+			<div class="form-group">
+                <label for="age">Varsta, intre:</label>
+                <select name="age" id="age">
+                    <option>..select..</option>
+                    <option value="5-10">5-10</option>
+                    <option value="11-18">11-18</option>
+                    <option value="19-30">19-30</option>
+                    <option value="31-50">31-50</option>
+                    <option value="51-70">51-70</option>
+                    <option value="71+">71+</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="msg">Mesaj:</label>
+                <textarea name="msg" id="msg" rows="4" cols="33"></textarea><br />
+	 		
+	 		</div>
+	 		<input type="submit" name="submit" value="Trimite" />
+        </form>
+        </div>
+	</body>
+</html>

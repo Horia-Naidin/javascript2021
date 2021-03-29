@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <title>Demo Credit Card</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Credit Card</h1>
+        <p>Card valid: </p>
+        <ul>
+            <li>16 cifre</li>
+            <li>cel putin 2 cifre diferite</li>
+            <li>cifra finala trebuie sa fie para</li>
+            <li>suma tuturor cifrelor trebuie sa fie mai mare de 16</li>
+        </ul>
+        <p>Ex. card valid:</p>
+        <ul>
+            <li>9999777788880000</li>
+            <li>6666666666661666</li>
+            <li>6666-6666-6666-1666</li>
+        </ul>
+        <p>Ex. card invalid:</p>
+        <ul>
+            <li>a92332119c011112 - contine litere</li>
+            <li>4444444444444444 - nu are cifre diferite</li>
+            <li>1111111111111110 - suma mai mica decat 16 </li>
+            <li>6666666666666661 - ultima cifra impara</li>
+        </ul>
+
+
+
+        <form action="test.php" method="post" onsubmit=" return validateCreditCard()">
+            <div class="form-group">
+                <label for="card">Credit Card:</label>
+                <input type="text" name="card" id="card" />
+            </div>
+            <input type="submit" name="submit" value="Trimite" />
+        </form>
+    </div>
+    <script>
+        function validateCreditCard() {
+            var creditCardNum = document.getElementById("card").value;
+             creditCardNum = creditCardNum.trim();
+            //Remove dashes from creditCardNum string
+            var ccNumberNoDashes = '';
+            for (var i = 0; i < creditCardNum.length; i++) {
+                
+                if ((creditCardNum[i] === '-' || creditCardNum[i] === ' ') && (i+1) % 5 ===0) {
+
+                }
+                else{
+                    //console.log(i);
+                    ccNumberNoDashes += creditCardNum[i];
+                }
+            }
+            // The credit card number must be 16 digits in length
+            if (ccNumberNoDashes.length !== 16) {
+                alert('The credit card number must be 16 digits in length');
+                return false;
+            }
+
+            // All of the digits must be numbers
+            for (var i = 0; i < ccNumberNoDashes.length; i++) {
+                // store the current digit 
+                var currentNumber = ccNumberNoDashes[i];
+
+                // turn the digit from a string to an integer (if the digit is in fact a digit and not anther char)
+                currentNumber = Number.parseInt(currentNumber);
+
+                // check that the digit is a number
+                if (!Number.isInteger(currentNumber)) {
+                    alert('All of the digits must be numbers');
+                    return false;
+                }
+            }
+
+            // The credit card number must be composed of at least two different digits (i.e. all of the digits cannot be the same)
+            var obj = {};
+            for (var i = 0; i < ccNumberNoDashes.length; i++) {
+                obj[ccNumberNoDashes[i]] = true;
+            }
+            if (Object.keys(obj).length < 2) {
+                alert('At least two different digits');
+                return false;
+            }
+
+            // The final digit of the credit card number must be even
+            if (ccNumberNoDashes[ccNumberNoDashes.length - 1] % 2 !== 0) {
+                alert('The final digit of the credit card number must be even');
+                return false;
+            }
+
+            // The sum of all the digits must be greater than 16
+            var sum = 0;
+            for (var i = 0; i < ccNumberNoDashes.length; i++) {
+                sum += Number(ccNumberNoDashes[i]);
+            }
+            if (sum <= 16) {
+                alert('he sum of all the digits must be greater than 16');
+                return false;
+            }
+
+            return true;
+        };
+
+    </script>
+</body>
+
+</html>

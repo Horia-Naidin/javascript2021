@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>window scroll offset</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body style="height: 1500px">
+    <p>Aceasta pagina are o inaltime de 1500 px</p>
+    <p>Cand ajungem la 70%  setam o alerta</p>
+    <script>
+        window.onscroll = function (e) {
+            console.log(window.pageYOffset);
+            if(window.pageYOffset >1000){
+                alert('Va multumim ca ati citit acest articol! Urmatorul articol este la fel de interesant!')
+            }
+        }
+    </script>
+</body>
+
+</html>
