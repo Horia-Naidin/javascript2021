@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery Ajax</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("button").click(function () {
+                $.ajax(
+                    "https://programming-quotes-api.herokuapp.com/quotes/random",
+                    {
+                        type: 'GET',  // http method
+                        dataType: 'json', // type of response data
+                        success: function (data, status, xhr) {   // success callback function
+                            $('div').append(data.en + ' ' + data.author + '<br><br>' );
+                        },
+                        error: function (jqXhr, textStatus, errorMessage) { // error callback 
+                            $('div').append('Error: ' + errorMessage);
+                        }
+                    });
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <h2>Folosim metoda $.ajax() pentru a face un request de tip GET si afizam informatia</h2>
+
+    <p> <a target="_blank"
+            href="https://github.com/skolakoda/programming-quotes-api">https://github.com/skolakoda/programming-quotes-api</a>
+    </p>
+    <button>Get JSON data</button>
+
+    <div></div>
+
+</body>
+
+</html>
